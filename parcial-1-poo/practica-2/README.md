@@ -8,7 +8,7 @@ en una clase hija (Admin).
 ## Tecnologias utilizadas
 - PHP 8+
 
-## Instrucciones de ejecuci�n
+## Instrucciones de ejecucion
 1. Clonar el repositorio
 2. Navegar a la carpeta `parcial-1-poo/practica-2`
 3. Ejecutar en terminal o navegador: `php index.php`
