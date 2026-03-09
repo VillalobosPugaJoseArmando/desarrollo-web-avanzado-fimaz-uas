@@ -1,14 +1,22 @@
-# Pr�ctica X � Parcial Y
+# Practica 1 y Parcial 1
 
 ## Objetivo
-Describir brevemente qu� se implement�.
+Implementar una clase en PHP con atributos privados, constructor y métodos
+de acceso (getters y setters), aplicando buenas prácticas de encapsulamiento
+y Programación Orientada a Objetos.
 
-## Tecnolog�as utilizadas
+## Tecnologias utilizadas
 - PHP 8+
-- MySQL
+- VSCode
+- Git + GitHub
 
-## Instrucciones de ejecuci�n
-Pasos para ejecutar el proyecto localmente.
+## Instrucciones de ejecucion
+1. Tener PHP 8+ instalado y configurado en el PATH del sistema
+2. Clonar el repositorio o descargar los archivos
+3. Abrir terminal en la carpeta `practica-1`
+4. Ejecutar: php index.php
 
 ## Evidencia de funcionamiento
-Descripci�n breve o capturas (opcional).
+
+Nombre: Armando Villalobos  
+Correo: joarvipu2003@gmail.com
