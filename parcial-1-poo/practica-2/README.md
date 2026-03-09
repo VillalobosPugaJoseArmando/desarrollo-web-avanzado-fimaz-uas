@@ -1,14 +1,14 @@
-# Práctica X – Parcial Y
+# Prï¿½ctica X ï¿½ Parcial Y
 
 ## Objetivo
-Describir brevemente qué se implementó.
+Describir brevemente quï¿½ se implementï¿½.
 
-## Tecnologías utilizadas
+## Tecnologï¿½as utilizadas
 - PHP 8+
 - MySQL
 
-## Instrucciones de ejecución
+## Instrucciones de ejecuciï¿½n
 Pasos para ejecutar el proyecto localmente.
 
 ## Evidencia de funcionamiento
-Descripción breve o capturas (opcional).
+Descripciï¿½n breve o capturas (opcional).
