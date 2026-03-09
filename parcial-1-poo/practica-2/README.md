@@ -1,11 +1,11 @@
-# Pr�ctica 2 � Parcial 1
+# Practica 2 - Parcial 1
 
 ## Objetivo
 Implementar herencia en PHP mediante la extensión de clases,
 reutilizando atributos y métodos de una clase base (Usuario)
 en una clase hija (Admin).
 
-## Tecnolog�as utilizadas
+## Tecnologias utilizadas
 - PHP 8+
 
 ## Instrucciones de ejecuci�n
@@ -19,3 +19,7 @@ Al ejecutar `php index.php` en la terminal se obtiene:
 Nombre: Armando Villalobos  
 Correo: joarvipu2003@gmail.com
 Rol: Administrador
+
+![Evidencia 1](evidencia1.png)
+
+![Evidencia 2](evidencia2.png)
