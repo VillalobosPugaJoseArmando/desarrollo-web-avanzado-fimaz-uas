@@ -20,6 +20,6 @@ Nombre: Armando Villalobos
 Correo: joarvipu2003@gmail.com
 Rol: Administrador
 
-![Evidencia 1](evidencia1.png)
+![Evidencia 1](evidencia.png)
 
-![Evidencia 2](evidencia2.png)
+![Evidencia 2](evidencia(2).png)
