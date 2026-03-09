@@ -1,14 +1,19 @@
-# Práctica X – Parcial Y
+# Practica 4 - Parcial 1
 
 ## Objetivo
-Describir brevemente qué se implementó.
+Construir un mini-sistema POO en PHP integrando herencia,
+validaciones, excepciones y salida en tabla HTML.
 
-## Tecnologías utilizadas
+## Tecnologï¿½as utilizadas
 - PHP 8+
-- MySQL
 
-## Instrucciones de ejecución
-Pasos para ejecutar el proyecto localmente.
+## Instrucciones de ejecuciï¿½n
+1. Clonar el repositorio
+2. Navegar a la carpeta `parcial-1-poo/practica-4`
+3. Ejecutar: `php -S localhost:8000`
+4. Abrir en navegador: `http://localhost:8000/index.php`
 
 ## Evidencia de funcionamiento
-Descripción breve o capturas (opcional).
+![Evidencia](evidencia.png)
+
+https://youtu.be/cR1PMjS8W3A
