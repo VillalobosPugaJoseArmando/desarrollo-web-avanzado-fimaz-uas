@@ -1,14 +1,16 @@
-# Práctica X – Parcial Y
+# Practica 3 - Parcial 1
 
 ## Objetivo
-Describir brevemente qué se implementó.
+Desarrollar un sistema orientado a objetos con herencia,
+validaciones y manejo de excepciones en PHP.
 
-## Tecnologías utilizadas
+## Tecnologias utilizadas
 - PHP 8+
-- MySQL
 
-## Instrucciones de ejecución
-Pasos para ejecutar el proyecto localmente.
+## Instrucciones de ejecucion
+1. Clonar el repositorio
+2. Navegar a la carpeta `parcial-1-poo/practica-3`
+3. Ejecutar en terminal: `php index.php`
 
 ## Evidencia de funcionamiento
-Descripción breve o capturas (opcional).
+![Evidencia](evidencia.png)
