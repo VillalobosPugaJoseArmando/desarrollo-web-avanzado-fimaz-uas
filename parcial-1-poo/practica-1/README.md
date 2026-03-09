@@ -20,3 +20,6 @@ y Programación Orientada a Objetos.
 
 Nombre: Armando Villalobos  
 Correo: joarvipu2003@gmail.com
+
+![Evidencia 1](evidencia1.png)
+![Evidencia 2](evidencia2.png)
