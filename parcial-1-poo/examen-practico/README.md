@@ -24,11 +24,11 @@ o Mostrar en pantalla una “tabla” simple (puede ser HTML
 básico) con: 
 § Nombre | Correo | Rol | Matrícula (solo si aplica)
 
-## Tecnolog�as utilizadas
+## Tecnologias utilizadas
 - PHP 8+
 
-## Instrucciones de ejecuci�n
+## Instrucciones de ejecucion
 Ejecutar el comando php -S localhost:8000 (en el caso de no tener XAMPP)
 
 ## Evidencia de funcionamiento
-
+[![Ver video](https://img.youtube.com/vi/DEX8_10yD2c/0.jpg)](https://youtu.be/DEX8_10yD2c)
