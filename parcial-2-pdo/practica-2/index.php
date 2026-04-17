@@ -21,6 +21,59 @@ try {
 
 $mensaje = "";
 $detalle = "";
+
+// Procesar formulario
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $nombre       = trim($_POST["nombre"] ?? "");
+    $apellido     = trim($_POST["apellido"] ?? "");
+    $correo       = trim($_POST["correo"] ?? "");
+    $simularError = isset($_POST["simular_error"]);
+
+    if ($nombre === "" || $apellido === "" || $correo === "") {
+        $mensaje = "? Todos los campos son obligatorios.";
+    } else {
+        try {
+            // 1) Iniciar transaccion
+            $pdo->beginTransaction();
+
+            // 2) Insertar alumno
+            $sqlAlumno  = "INSERT INTO alumnos (nombre, apellido, correo)
+                           VALUES (:nombre, :apellido, :correo)";
+            $stmtAlumno = $pdo->prepare($sqlAlumno);
+            $stmtAlumno->execute([
+                "nombre"   => $nombre,
+                "apellido" => $apellido,
+                "correo"   => $correo
+            ]);
+
+            $idAlumno = (int)$pdo->lastInsertId();
+
+            // 3) Insertar log o simular error
+            if ($simularError) {
+                throw new Exception("Simulacion de error activada: se fuerza rollback.");
+            } else {
+                $sqlLog  = "INSERT INTO logs_alumnos (idAlumno, accion)
+                            VALUES (:idAlumno, :accion)";
+                $stmtLog = $pdo->prepare($sqlLog);
+                $stmtLog->execute([
+                    "idAlumno" => $idAlumno,
+                    "accion"   => "ALTA_ALUMNO"
+                ]);
+            }
+
+            // 4) Confirmar transaccion
+            $pdo->commit();
+            $mensaje = "? Transaccion confirmada (COMMIT). Alumno registrado con ID: $idAlumno";
+
+        } catch (Exception $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+            $mensaje = "? Ocurrio un error. Transaccion revertida (ROLLBACK).";
+            $detalle = $e->getMessage();
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
