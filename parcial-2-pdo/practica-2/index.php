@@ -1,6 +1,7 @@
 <?php
 
 // Configuracion
+
 $host    = "localhost";
 $db      = "escuela";
 $user    = "root";
@@ -9,26 +10,31 @@ $charset = "utf8mb4";
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
-// Conexion PDO (con excepciones)
+//Conexion PDO (con excepciones)
 try {
     $pdo = new PDO($dsn, $user, $pass, [
-        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // clave: errores como excepciones
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ]);
 } catch (PDOException $e) {
     die("Error de conexion: " . $e->getMessage());
 }
 
+//mensajes para mostrar en pantalla
 $mensaje = "";
 $detalle = "";
 
 // Procesar formulario
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nombre       = trim($_POST["nombre"] ?? "");
-    $apellido     = trim($_POST["apellido"] ?? "");
-    $correo       = trim($_POST["correo"] ?? "");
+    // Datos del formulario
+    $nombre   = trim($_POST["nombre"] ?? "");
+    $apellido = trim($_POST["apellido"] ?? "");
+    $correo   = trim($_POST["correo"] ?? "");
+
+    // Checkbox: simular error
     $simularError = isset($_POST["simular_error"]);
 
+    // Validacion minima (didactica)
     if ($nombre === "" || $apellido === "" || $correo === "") {
         $mensaje = "? Todos los campos son obligatorios.";
     } else {
@@ -36,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // 1) Iniciar transaccion
             $pdo->beginTransaction();
 
-            // 2) Insertar alumno
+            // 2) Insertar alumno (CREATE)
             $sqlAlumno  = "INSERT INTO alumnos (nombre, apellido, correo)
                            VALUES (:nombre, :apellido, :correo)";
             $stmtAlumno = $pdo->prepare($sqlAlumno);
@@ -48,9 +54,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $idAlumno = (int)$pdo->lastInsertId();
 
-            // 3) Insertar log o simular error
+            // 3) Insertar log (bitacora)
+            // Si se marca simular error, forzamos una falla controlada
             if ($simularError) {
+                // Forzamos rollback con una excepcion intencional
                 throw new Exception("Simulacion de error activada: se fuerza rollback.");
+                // Alternativa: usar una tabla inexistente para fallar
+                // $sqlLog = "INSERT INTO logs_alumnos_X (idAlumno, accion) VALUES (:idAlumno, :accion)";
             } else {
                 $sqlLog  = "INSERT INTO logs_alumnos (idAlumno, accion)
                             VALUES (:idAlumno, :accion)";
@@ -63,17 +73,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             // 4) Confirmar transaccion
             $pdo->commit();
-            $mensaje = "? Transaccion confirmada (COMMIT). Alumno registrado con ID: $idAlumno";
 
+            $mensaje = "? Transaccion confirmada (COMMIT). Alumno registrado con ID: $idAlumno";
         } catch (Exception $e) {
+            // Si algo falla, revertir TODO
             if ($pdo->inTransaction()) {
                 $pdo->rollBack();
             }
             $mensaje = "? Ocurrio un error. Transaccion revertida (ROLLBACK).";
-            $detalle = $e->getMessage();
+            $detalle = $e->getMessage(); // mostrar solo en entorno de clase/desarrollo
         }
     }
 }
+
+// Consultas para mostrar tablas
+
+$alumnos = $pdo->query("SELECT * FROM alumnos ORDER BY idAlumno DESC")->fetchAll();
+$logs    = $pdo->query("SELECT * FROM logs_alumnos ORDER BY idLog DESC")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -130,6 +146,69 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button class="btn" type="submit">Registrar alumno</button>
     </form>
 </div>
+
+<?php if ($mensaje): ?>
+    <div class="card">
+        <p class="msg"><?= htmlspecialchars($mensaje) ?></p>
+        <?php if ($detalle): ?>
+            <p class="small danger">Detalle (solo desarrollo): <?= htmlspecialchars($detalle) ?></p>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
+
+<div class="card">
+    <h3>Tabla alumnos</h3>
+    <?php if (!$alumnos): ?>
+        <p class="small">Sin registros.</p>
+    <?php else: ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th><th>Nombre</th><th>Apellido</th><th>Correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($alumnos as $a): ?>
+                <tr>
+                    <td><?= htmlspecialchars($a['idAlumno']) ?></td>
+                    <td><?= htmlspecialchars($a['nombre']) ?></td>
+                    <td><?= htmlspecialchars($a['apellido']) ?></td>
+                    <td><?= htmlspecialchars($a['correo']) ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>
+
+<div class="card">
+    <h3>Tabla logs_alumnos</h3>
+    <?php if (!$logs): ?>
+        <p class="small">Sin registros.</p>
+    <?php else: ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Log</th><th>ID Alumno</th><th>Accion</th><th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($logs as $l): ?>
+                <tr>
+                    <td><?= htmlspecialchars($l['idLog']) ?></td>
+                    <td><?= htmlspecialchars($l['idAlumno']) ?></td>
+                    <td><?= htmlspecialchars($l['accion']) ?></td>
+                    <td><?= htmlspecialchars($l['fecha']) ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>
+
+<p class="small">
+    Prueba recomendada: 1) Registrar sin simular error (COMMIT). 2) Activar "Simular error" y registrar (ROLLBACK).
+</p>
 
 </body>
 </html>
