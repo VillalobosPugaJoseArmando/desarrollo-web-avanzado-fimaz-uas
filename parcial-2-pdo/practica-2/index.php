@@ -49,5 +49,34 @@ $detalle = "";
 
 <h2>Practica: try/catch y transacciones (PDO + MySQL)</h2>
 
+<div class="card">
+    <form method="POST">
+        <div class="row">
+            <div>
+                <label>Nombre</label>
+                <input type="text" name="nombre" maxlength="15" value="<?= htmlspecialchars($_POST['nombre'] ?? 'Jose Alfonso') ?>">
+            </div>
+            <div>
+                <label>Apellido</label>
+                <input type="text" name="apellido" maxlength="10" value="<?= htmlspecialchars($_POST['apellido'] ?? 'Aguilar') ?>">
+            </div>
+            <div>
+                <label>Correo</label>
+                <input type="email" name="correo" maxlength="50" value="<?= htmlspecialchars($_POST['correo'] ?? 'ja.aguilar@uas.edu.mx') ?>">
+            </div>
+        </div>
+
+        <p>
+            <label style="font-weight:normal">
+                <input type="checkbox" name="simular_error" <?= isset($_POST['simular_error']) ? 'checked' : '' ?>>
+                Simular error para forzar ROLLBACK
+            </label>
+            <span class="small">(Activa para comprobar que no se guarda nada si falla un paso.)</span>
+        </p>
+
+        <button class="btn" type="submit">Registrar alumno</button>
+    </form>
+</div>
+
 </body>
 </html>
