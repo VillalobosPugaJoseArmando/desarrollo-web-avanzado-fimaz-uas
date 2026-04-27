@@ -1,0 +1,7 @@
+<?php
+spl_autoload_register(function ($clase) {
+    $ruta = str_replace('\\', DIRECTORY_SEPARATOR, $clase) . '.php';
+    if (file_exists($ruta)) {
+        require_once $ruta;
+    }
+});
