@@ -1,14 +1,25 @@
-# Práctica X – Parcial Y
+# Examen PrÃ¡ctico â€” Parcial 2
 
 ## Objetivo
-Describir brevemente qué se implementó.
+Implementar un CRUD de productos en PHP usando PDO, ProgramaciÃ³n Orientada a Objetos,
+namespaces, try/catch y autoload, conectado a una base de datos MySQL.
 
-## Tecnologías utilizadas
+## TecnologÃ­as utilizadas
 - PHP 8+
 - MySQL
+- PDO
+- Bootstrap 5
+- VSCode
+- Git + GitHub
 
-## Instrucciones de ejecución
-Pasos para ejecutar el proyecto localmente.
+## Instrucciones de ejecuciÃ³n
+1. Tener XAMPP instalado y corriendo (Apache + MySQL)
+2. Clonar el repositorio en la carpeta `htdocs` de XAMPP
+3. Crear la base de datos `escuela` en phpMyAdmin
+4. Abrir el navegador en `http://localhost/index.php`
 
 ## Evidencia de funcionamiento
-Descripción breve o capturas (opcional).
+Nombre: JosÃ© Armando Villalobos Puga  
+Correo: joarvipu2003@gmail.com
+
+[![Ver video](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
