@@ -1,14 +1,33 @@
-# Práctica X – Parcial Y
+# Examen PrÃ¡ctico â€” Parcial 4
 
 ## Objetivo
-Describir brevemente qué se implementó.
+introducir, actualizar, observar y eliminar productos utilizando endpoints desde postman
 
-## Tecnologías utilizadas
-- PHP 8+
-- MySQL
+## TecnologÃ­as utilizadas
 
-## Instrucciones de ejecución
-Pasos para ejecutar el proyecto localmente.
+* PHP 8+
+* MySQL
+* PDO
+* Postman
+* XAMPP
+* VSCode
+* Git + GitHub
+
+## Instrucciones de ejecuciÃ³n
+
+1. Tener XAMPP instalado y corriendo (Apache + MySQL)
+2. Clonar el repositorio en la carpeta `htdocs` de XAMPP como `RESTful`
+3. Crear la base de datos `productos` en phpMyAdmin con la siguiente tabla:
+4. Acceder al endpoint desde Postman: `GET http://localhost/RESTful/api/productos`
+
+## Funcionalidades
+
+* Consulta general de todos los productos registrados (`GET /productos`)
+* Respuesta en formato JSON
+* Manejo de cÃ³digos HTTP (200, 404)
 
 ## Evidencia de funcionamiento
-Descripción breve o capturas (opcional).
+
+**Nombre:** JosÃ© Armando Villalobos Puga  
+**Correo:** joarvipu2003@gmail.com  
+**Video:** [â–¶ Ver video en YouTube](https://youtu.be/Xv6hQtXGFKM)
